@@ -1,0 +1,112 @@
+
+            <!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lâmpada - Thales</title>
+
+  <style>
+    :root {
+      --tarso1: #748cab;
+      --tarso2: #3e5c76;
+      --tarso3: #1d2d44;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(to top, var(--tarso1), var(--tarso3));
+      background-attachment: fixed;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+    }
+
+    header, section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    img {
+      width: 150px;
+      transition: 0.3s;
+    }
+
+    button {
+      width: 90px;
+      padding: 8px;
+      margin: 5px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: var(--tarso2);
+      color: white;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: var(--tarso1);
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Lâmpada</h1>
+  </header>
+
+  <section>
+    <div>
+      <img src="./img lamp_off.png" alt="Lâmpada Off" id="lamp">
+    </div>
+
+    <div>
+      <button id="turnOn">Ligar</button>
+      <button id="turnOff">Desligar</button>
+    </div>
+  </section>
+
+  <script>
+    const turnOn = document.getElementById('turnOn');
+    const turnOff = document.getElementById('turnOff');
+    const lamp = document.getElementById('lamp');
+
+    function isLampBroken() {
+      return lamp.src.indexOf('broke') > -1;
+    }
+
+    function lampOn() {
+      if (!isLampBroken()) {
+        lamp.src = './img/lamp_on.png';
+      }
+    }
+
+    function lampOff() {
+      if (!isLampBroken()) {
+        lamp.src = './img/lamp_off.png';
+      }
+    }
+
+    function lampBroken() {
+      lamp.src = './img/lamp_broke.png';
+    }
+
+    turnOn.addEventListener('click', lampOn);
+    turnOff.addEventListener('click', lampOff);
+    lamp.addEventListener('mouseover', lampOn);
+    lamp.addEventListener('mouseleave', lampOff);
+    lamp.addEventListener('dblclick', lampBroken);
+  </script>
+</body>
+
+</html>
